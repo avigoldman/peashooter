@@ -3,7 +3,8 @@ $(function() {
   var $log = $('#log');
   var $clear = $('#clear');
 
-  
+  $log.html($('#default-log').html());
+
   /**
    * Inital load
    */
@@ -27,11 +28,14 @@ $(function() {
     }
   });
 
-
   /**
    * add new lines on "entry"
    */
   socket.on('entry', function(entry) {
+    if ($log.find('pre').length > 0) {
+      $log.html('');
+    }
+
     addEntry(entry, true);
   });
 
@@ -39,7 +43,7 @@ $(function() {
    * Remove entries on "clear"
    */
   socket.on('clear', function(data) {
-    $log.html('');
+    $log.html($('#default-log').html());
   });
 
   /**
