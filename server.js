@@ -9,6 +9,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const knex = require('./utils/knex');
 const exphbs = require('express-handlebars');
+const basicAuth = require('express-basic-auth');
 const settings = require('./app')
 
 
@@ -18,7 +19,17 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.text());
 app.use(express.static('public'));
 
-const USE_AUTH = process.env.PEASHOOTER_USER && process.env.PEASHOOTER_PASSWORD;
+/**
+ * Configure basic auth
+ */
+const USE_AUTH = process.env.PEASHOOTER_USERNAME && process.env.PEASHOOTER_PASSWORD;
+if (USE_AUTH) {
+  app.use(basicAuth({
+      users: { [process.env.PEASHOOTER_USERNAME]: process.env.PEASHOOTER_PASSWORD },
+      challenge: true,
+      unauthorizedResponse: (req) => { return '401 Authorization Required'; }
+  }));
+}
 
 app.get('/', function(req, res) {
   res.render('index', {
