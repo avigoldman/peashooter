@@ -10,7 +10,7 @@
         <div class="topbar">
           <div class="topbar__left">
               <h1>{{title}}</h1>
-
+              
               {{#if show_info}}
                 <div class="topbar__navigation">
                   <a class="show-info" href="#about">About</a>
@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-  
+    
     {{#if show_info}}
       <div id="peashooter-info">
         <div class="content">
@@ -57,28 +57,81 @@
           </ul>
           <div class="tabs">
             <div id="about" class="tab is-active">
-            about
+              <h2>About peashooter</h2>
+              <p>I made this for a friends project who needed an easy way to log output from his home-made 360 camera. (Yes it is as cool as it sounds - read about it on <a href="http://dcc.umd.edu/portfolio/bbock">his blog</a>).</p>
+              <p>This project is 💯 open source. You can, clone, fork, dice, and slice this any way you want. You can find instructions to run your own peashooter log <a href="{{github}}">here</a>. If there's something you want in it, make a pull request! Any suggestions and bug reports are <a href="{{github}}/issues">welcome</a>.</p>
+
+              <div class="coffee-pleeeeease">
+                <h3>You a big fan of this project?</h3>
+                <p>Buy me a cup of coffee ☕! Want to do it irl? Drop me a <a href="mailto:me@avigoldman.com">line</a>.</p>
+              </div>
             </div>
             <div id="curl" class="tab">
-            curl
+              <pre>curl --request POST \
+    --url {{url}}/log \
+    {{#if use_auth}}
+    -u {{user}}:{{pass}} \
+    {{/if}}
+    --header 'content-type: text/plain' \
+    --data 'Your message goes here'</pre>
             </div>
             <div id="node" class="tab">
-            node
+              <pre>const request = require('request');
+
+request.post({
+  url: '{{url}}/log',
+  body: 'Your message goes here',
+  headers: {
+    'Content-Type': 'text/plain',
+  },
+  {{#if use_auth}}
+  'auth': {
+    'user': '{{user}}',
+    'pass': '{{pass}}',
+  }
+  {{/if}}
+}, function (error, response, body) {
+  console.log('error:', error);
+  console.log('statusCode:', response &amp;&amp; response.statusCode);
+  console.log('body:', body);
+});</pre>
             </div>
             <div id="php" class="tab">
-            php
+              <pre>&lt;?php
+
+$curl = curl_init();
+
+curl_setopt($curl, CURLOPT_URL, '{{url}}/log');
+curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($curl, CURLOPT_USERPWD,  "{{user}}:{{pass}}");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_HTTPHEADER, [ 'Content-Type: text/plain' ]);\
+
+curl_setopt($curl, CURLOPT_POSTFIELDS, 'Your message goes here');
+
+$result = curl_exec($curl);
+curl_close($curl);
+
+print_r($result);</pre>
             </div>
           </div>
         </div>
       </div>
     {{/if}}
 
+
     <div id="default-log">
       <h2 class="text-center">Get Started</h2>
-      <pre>some code</pre>
+      <p class="text-center">Run this code in your terminal to log your first message.</p>
+      <pre>curl --request POST \
+  --url {{url}}/log \
+  {{#if use_auth}}
+  -u {{user}}:{{pass}} \
+  {{/if}}
+  --header 'content-type: text/plain' \
+  --data 'Your message goes here'</pre>
     </div>
     
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="log.js"></script>
