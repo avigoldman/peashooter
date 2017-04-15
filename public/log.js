@@ -20,6 +20,14 @@ $(function() {
     }
   });
 
+
+  /**
+   * add new lines on "entry"
+   */
+  socket.on('entry', function(entry) {
+    addEntry(entry, true);
+  });
+
   /**
    * Function to add in new entries
    */
