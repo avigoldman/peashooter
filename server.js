@@ -26,3 +26,25 @@ app.get('/list', function(req, res) {
     sendError(res, err);
   });
 });
+
+/**
+ * Logs a new line
+ */
+app.post('/log', function(req, res) {
+  knex('entries')
+  .insert({
+    text: req.body,
+    created_at: knex.fn.now()
+  })
+  .then((entries) => {
+    return knex('entries').whereIn('id', entries);
+  })
+  .then((entries) => {
+    const entry = entries[0];
+    io.emit('entry', entry);
+    res.status(200).send(entry);
+  })
+  .catch((err) => {
+    sendError(res, err);
+  });
+});
