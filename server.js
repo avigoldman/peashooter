@@ -11,10 +11,6 @@ const knex = require('./utils/knex');
 
 app.use(bodyParser.text());
 
-server.listen(PORT, function () {
-  console.log(`Peashooter listening on port ${PORT}!`);
-});
-
 /**
  * Lists all the logs
  */
@@ -77,3 +73,16 @@ app.post('/clear', function(req, res) {
     sendError(res, err);
   });
 });
+
+server.listen(PORT, function () {
+  console.log(`Peashooter listening on port ${PORT}!`);
+});
+
+function sendError(res, err) {
+  const json = {
+    error: err.toString()
+  };
+
+  io.emit('error', json);
+  res.status(500).send(json);
+}
