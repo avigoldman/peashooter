@@ -32,6 +32,19 @@ app.get('/list', function(req, res) {
  * Logs a new line
  */
 app.post('/log', function(req, res) {
+  const contentType = req.headers['content-type'];
+  if (!contentType || contentType.indexOf('text/plain') !== 0) {
+    return sendError(res, new Error('Entry must have content-type of "text/plain"'), 400);
+  }
+
+  if (typeof req.body !== 'string') {
+    return sendError(res, new Error('Entry must be a string.'), 400);
+  }
+
+  if (req.body.length === 0) {
+    return sendError(res, new Error('Entry must have a length greater than 0.'), 400); 
+  }
+
   knex('entries')
   .insert({
     text: escapeHtml(req.body),
