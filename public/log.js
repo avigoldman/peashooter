@@ -18,6 +18,13 @@ $(function() {
     for (var i = 0; i < entries.length; i++) {
       addEntry(entries[i]);
     }
+
+    // scroll to element from url
+    var $selectedElement = $(window.location.hash);
+  
+    if ($selectedElement.length > 0 && $log.has($selectedElement)) {
+      $selectedElement.goTo();
+    }
   });
 
 
@@ -48,7 +55,6 @@ $(function() {
     }, true);
   });
 
-
   /**
    * Trigger clear
    */
@@ -65,7 +71,6 @@ $(function() {
       $clear.addClass('clear--confirming');
     }
   });
-
 
   $('#clear .clear__cancel').on('click', function(event) {
     $clear.removeClass('clear--confirming');
@@ -93,3 +98,15 @@ $(function() {
     $log.prepend(entryHTML);
   }
 });
+
+/**
+ * Add goTo function for scrolling to div
+ */
+(function($) {
+  $.fn.goTo = function() {
+    $('html, body').animate({
+      scrollTop: $(this).offset().top + 'px'
+    }, 'fast');
+    return this; // for chaining...
+  }
+})(jQuery);
