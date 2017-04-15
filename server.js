@@ -62,3 +62,18 @@ app.post('/log', function(req, res) {
     sendError(res, err);
   });
 });
+
+/**
+ * Clears all the logs
+ */
+app.post('/clear', function(req, res) {
+  knex('entries')
+  .del()
+  .then((count) => {  
+    io.emit('clear', { count });
+    res.status(200).send({ count });
+  })
+  .catch((err) => {
+    sendError(res, err);
+  });
+});
