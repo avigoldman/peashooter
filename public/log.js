@@ -67,6 +67,16 @@ $(function() {
   });
 
 
+  $('#clear .clear__cancel').on('click', function(event) {
+    $clear.removeClass('clear--confirming');
+  });
+
+  $('body').click(function(event) {
+    if ($(event.target).closest('#clear').length === 0) {
+      $clear.removeClass('clear--confirming');
+    }
+  });
+
   /**
    * Function to add in new entries
    */
