@@ -1,0 +1,31 @@
+{
+  "name": "peashooter",
+  "description": "A simple remote server to store text logs shot to it with a live dashboard",
+  "keywords": [
+    "logging",
+    "remote",
+    "peashooter",
+    "logger"
+  ],
+  "website": "http://avigoldman.com",
+  "repository": "https://github.com/aymg/peashooter",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "./node_modules/.bin/knex migrate:latest"
+  },
+  "addons": [ "heroku-postgresql" ],
+  "env": {
+    "PEASHOOTER_TITLE": {
+      "description": "The title for the logger. This shows up a in the title tag and top of the dashboard."
+    },
+    "PEASHOOTER_USERNAME": {
+      "description": "The username for basic auth. Set a username and password to enable basic auth."
+    },
+    "PEASHOOTER_PASSWORD": {
+      "description": "The username for basic auth. Set a username and password to enable basic auth."
+    },
+    "PEASHOOTER_HIDE_INFO": {
+      "description": "Wether or not to hide the about and sample code in the dashboard. Default the default value is false. If set to false, basic auth details are made visible."
+    }
+  }
+}
