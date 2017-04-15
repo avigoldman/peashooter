@@ -48,6 +48,19 @@ $(function() {
     }, true);
   });
 
+
+  /**
+   * Trigger clear
+   */
+  $('#clear button').on('click', function(event) {
+    event.preventDefault();
+    $.ajax({
+      url: '/clear',
+      type: 'POST',
+    });
+  });
+
+
   /**
    * Function to add in new entries
    */
