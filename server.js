@@ -8,9 +8,27 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const knex = require('./utils/knex');
+const exphbs = require('express-handlebars');
+const settings = require('./app')
+
+
+app.engine('handlebars', exphbs({ defaultLayout: false }));
+app.set('view engine', 'handlebars');
 
 app.use(bodyParser.text());
 app.use(express.static('public'));
+
+app.get('/', function(req, res) {
+  res.render('index', {
+    title: process.env.PEASHOOTER_TITLE || settings.name,
+    github: settings.repository,
+    url: process.env.URL || `http://localhost:${PORT}`,
+    show_info: !process.env.PEASHOOTER_HIDE_INFO,
+    use_auth: USE_AUTH,
+    user: process.env.PEASHOOTER_USERNAME || '',
+    pass: process.env.PEASHOOTER_PASSWORD || ''
+  });
+});
 
 /**
  * Lists all the logs
