@@ -78,6 +78,7 @@ app.post('/log', function(req, res) {
     text: escapeHtml(req.body),
     created_at: knex.fn.now()
   })
+  .returning('id')
   .then((entries) => {
     return knex('entries').whereIn('id', entries);
   })
