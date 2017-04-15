@@ -10,6 +10,16 @@
         <div class="topbar">
           <div class="topbar__left">
               <h1>{{title}}</h1>
+
+              {{#if show_info}}
+                <div class="topbar__navigation">
+                  <a class="show-info" href="#about">About</a>
+                  <a class="show-info" href="#curl">cURL</a>
+                  <a class="show-info" href="#node"><i class="devicon-nodejs-plain"></i></a>
+                  <a class="show-info" href="#php"><i class="devicon-php-plain"></i></a>
+                  <a href="{{github}}" target="_blank"><i class="devicon-github-plain"></i></a>
+                </div>
+              {{/if}}
           </div>
           <div class="topbar__right">
             <div id="clear">
@@ -40,5 +50,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="log.js"></script>
+    <script src="dashboard.js"></script>
   </body>
 </html>
