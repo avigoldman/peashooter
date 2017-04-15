@@ -3,6 +3,7 @@
 const PORT = process.env.PORT || 3000;
 const express = require('express');
 const bodyParser = require('body-parser');
+const escapeHtml = require('escape-html');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
@@ -33,7 +34,7 @@ app.get('/list', function(req, res) {
 app.post('/log', function(req, res) {
   knex('entries')
   .insert({
-    text: req.body,
+    text: escapeHtml(req.body),
     created_at: knex.fn.now()
   })
   .then((entries) => {
