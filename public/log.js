@@ -54,10 +54,16 @@ $(function() {
    */
   $('#clear button').on('click', function(event) {
     event.preventDefault();
-    $.ajax({
-      url: '/clear',
-      type: 'POST',
-    });
+    if ($clear.hasClass('clear--confirming')) {
+      $clear.removeClass('clear--confirming');
+      $.ajax({
+        url: '/clear',
+        type: 'POST',
+      });
+    }
+    else {
+      $clear.addClass('clear--confirming');
+    }
   });
 
 
