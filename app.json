@@ -1,6 +1,6 @@
 {
   "name": "peashooter",
-  "description": "A simple remote server to store text logs shot to it paired with a live dashboard",
+  "description": "A simple remote server to store simple logs bundled with a live dashboard",
   "keywords": [
     "logging",
     "remote",

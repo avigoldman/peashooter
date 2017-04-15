@@ -32,6 +32,7 @@ if (USE_AUTH) {
 }
 
 app.get('/', function(req, res) {
+  console.log(req.protocol + '://' + req.get('host') + req.originalUrl);
   res.render('index', {
     title: process.env.PEASHOOTER_TITLE || settings.name,
     github: settings.repository,
