@@ -82,6 +82,7 @@ $(function() {
     }
   });
 
+
   /**
    * Function to add in new entries
    */
@@ -96,6 +97,20 @@ $(function() {
     '</a>';
   
     $log.prepend(entryHTML);
+    if (isNew) {
+      $('.entry.entry--new').each(function(index, el) {
+        $el = $(el);
+        $el.css({
+            'margin-top': -$el.outerHeight(),
+            'opacity': 0
+          })
+          .removeClass('entry--new')
+          .animate({
+            'margin-top': 0,
+            'opacity': 1
+          }, 250);
+      });
+    } 
   }
 });
 
