@@ -18,6 +18,8 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.text());
 app.use(express.static('public'));
 
+const USE_AUTH = process.env.PEASHOOTER_USER && process.env.PEASHOOTER_PASSWORD;
+
 app.get('/', function(req, res) {
   res.render('index', {
     title: process.env.PEASHOOTER_TITLE || settings.name,
