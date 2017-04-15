@@ -32,11 +32,10 @@ if (USE_AUTH) {
 }
 
 app.get('/', function(req, res) {
-  console.log(req.protocol + '://' + req.get('host') + req.originalUrl);
   res.render('index', {
     title: process.env.PEASHOOTER_TITLE || settings.name,
     github: settings.repository,
-    url: process.env.URL || `http://localhost:${PORT}`,
+    url: buildUrl(req),
     show_info: !process.env.PEASHOOTER_HIDE_INFO,
     use_auth: USE_AUTH,
     user: process.env.PEASHOOTER_USERNAME || '',
@@ -110,6 +109,12 @@ app.post('/clear', function(req, res) {
 server.listen(PORT, function () {
   console.log(`Peashooter listening on port ${PORT}!`);
 });
+
+
+function buildUrl(req) {
+  return req.protocol + '://' + req.get('host');
+}
+
 
 function sendError(res, err) {
   const json = {
