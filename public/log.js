@@ -2,6 +2,7 @@ $(function() {
   var socket = io();
   var $log = $('#log');
   var $clear = $('#clear');
+
   
   /**
    * Inital load
@@ -18,4 +19,20 @@ $(function() {
       addEntry(entries[i]);
     }
   });
-})(jQuery);
+
+  /**
+   * Function to add in new entries
+   */
+  function addEntry(entry, isNew) {
+    var id = (entry.id || '');
+    var entryHTML = '<a id="'+id+'" href="#'+id+'" class="entry'+(!!isNew ? ' entry--new' : '')+(!!entry.error ? ' entry--error' : '')+'">'+
+      '<div class="entry__row">'+
+        '<div class="entry__id">'+id+'</div>'+
+        '<div class="entry__text">'+entry.text+'</div>'+
+      '</div>'+
+      ( entry.created_at ? '<div class="entry__timestamp">'+entry.created_at+'</div>' : '' )
+    '</a>';
+  
+    $log.prepend(entryHTML);
+  }
+});
