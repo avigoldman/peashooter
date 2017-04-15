@@ -1,7 +1,6 @@
 {
   "name": "peashooter",
   "version": "1.0.0",
-  "description": "A simple remote server to store text logs shot to it with a live dashboard",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",

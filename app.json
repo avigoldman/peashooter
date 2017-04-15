@@ -1,6 +1,6 @@
 {
   "name": "peashooter",
-  "description": "A simple remote server to store text logs shot to it with a live dashboard",
+  "description": "A simple remote server to store text logs shot to it paired with a live dashboard",
   "keywords": [
     "logging",
     "remote",
@@ -16,16 +16,20 @@
   "addons": [ "heroku-postgresql" ],
   "env": {
     "PEASHOOTER_TITLE": {
-      "description": "The title for the logger. This shows up a in the title tag and top of the dashboard."
+      "description": "The title for the logger. This shows up a in the title tag and top of the dashboard. Default: 'peashooter'",
+      "required": false
     },
     "PEASHOOTER_USERNAME": {
-      "description": "The username for basic auth. Set a username and password to enable basic auth."
+      "description": "The username for basic auth. Set a username and password to enable basic auth.",
+      "required": false
     },
     "PEASHOOTER_PASSWORD": {
-      "description": "The username for basic auth. Set a username and password to enable basic auth."
+      "description": "The username for basic auth. Set a username and password to enable basic auth.",
+      "required": false
     },
     "PEASHOOTER_HIDE_INFO": {
-      "description": "Wether or not to hide the about and sample code in the dashboard. Default the default value is false. If set to false, basic auth details are made visible."
+      "description": "Wether or not to hide the about and sample code in the dashboard. If set to false, basic auth details are made visible. Default: false",
+      "required": false
     }
   }
 }
