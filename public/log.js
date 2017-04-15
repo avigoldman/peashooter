@@ -29,6 +29,13 @@ $(function() {
   });
 
   /**
+   * Remove entries on "clear"
+   */
+  socket.on('clear', function(data) {
+    $log.html('');
+  });
+
+  /**
    * Function to add in new entries
    */
   function addEntry(entry, isNew) {
