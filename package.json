@@ -1,0 +1,26 @@
+{
+  "name": "peashooter",
+  "version": "1.0.0",
+  "description": "A simple remote server to store text logs shot to it with a live dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "prod": "node server.js"
+  },
+  "author": "Avi Goldman <me@avigoldman.com> (http://avigoldman.com)",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "escape-html": "^1.0.3",
+    "express": "^4.15.2",
+    "express-basic-auth": "^1.0.1",
+    "express-handlebars": "^3.0.0",
+    "knex": "^0.12.9",
+    "pg": "^6.1.5",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "sqlite3": "^3.1.8"
+  }
+}
