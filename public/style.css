@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Mono');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'PT Mono', monospace;
+  font-size: 16px;
+  background: #fafafa;
+  color: #222;
+}
+
+a {
+  color: inherit;
+}
+
+pre {
+  background: #2a2a2a;
+  padding: 20px;
+  color: white;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+#peashooter-info {
+  transform: translateY(100%);
+  transition: -webkit-transform 0.4s, visibility 0s 0.4s;
+  visibility: hidden;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(250, 250, 250, 0.93);
+  z-index: 10;
+}
+
+#peashooter-info__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 4em;
+  color: darkgrey;
+  line-height: 0em;
+  transition: color 0.25s;
+  cursor: pointer;
+}
+
+#peashooter-info__close:hover {
+  color: inherit;
+}
+
+#peashooter-info.is-open {
+  visibility: visible;
+  transform: translateY(0%);
+  transition: transform 0.4s;
+}
+
+.navigation {
+  list-style: none;
+  margin: 0 0 35px 0;
+  padding: 0;
+}
+
+.navigation li {
+  display: inline-block;
+}
+
+.navigation li a {
+  padding: 3px 5px;
+  margin: 0 20px 0 0;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: border 0.25s;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.navigation li a.is-active, .navigation li a:hover  {
+  border-bottom-color: inherit;
+}
+
+.tabs {}
+
+.tab {
+  display: none;
+}
+
+.tab.is-active {
+  display: block;
+}
+
+
+#container {
+  background: lightseagreen;
+  position: relative;
+  overflow: auto;
+  transition: transform 0.4s;
+  min-height: 100%;
+}
+
+#container.is-covered {
+  transform: scale(0.8);
+}
+
+.content {
+  margin: 60px auto;
+  width: 80%;
+  position: relative;
+  max-width: 920px;
+}
+
+.topbar {
+  margin: 25px 0 30px 0;
+}
+
+.topbar:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.topbar__left {
+  float: left;
+}
+
+.topbar__right {
+  float: right;
+}
+
+.topbar__navigation {
+  margin-top: 5px;
+  padding: 8px 0 0 0;
+  border-top: 2px solid #1b6d69;
+}
+
+.topbar__navigation a {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  padding: 0 5px;
+}
+
+h1 {
+  color: white;
+  font-size: 2.42em;
+  margin: 0;
+}
+
+button {
+  background: white;
+  font: inherit;
+  font-size: 1.25em;
+  border: 3px solid #1b6d69;
+  border-bottom-width: 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: border-width 0.15s, margin 0.15s;
+  position: relative;
+}
+
+button:hover, button:focus, button:active {
+  outline: 0;
+}
+
+button:active {
+  border-bottom-width: 3px;
+  margin-top: 2px;
+}
+
+#clear {
+  position: relative;
+}
+
+.clear__confirm {
+  position: absolute;
+  right: -3px;
+  padding: 5px 10px;
+  background: #1b6d69;
+  font-size: .8em;
+  width: 400px;
+  display: block;
+  transform: translateY(-100%);
+  color: white;
+  opacity: 0;
+  top: 0px;
+  transition: opacity .25s, top .25s;
+  cursor: default;
+  height: 30px;
+  line-height: 22px;
+}
+
+.clear--confirming .clear__confirm {
+  opacity: 1;
+  top: -10px;
+}
+
+.clear__cancel {
+  font-size: 1.2em;
+  background: #165754;
+  border-radius: 50%;
+  float: right;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#log {
+  background: white;
+  box-shadow: 0px 4px 8px 3px rgba(70, 98, 97, .6);
+  padding: 20px 0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+#log .entry:first-child .entry__row > * {
+  border-top: 1px solid #e5e5e5;
+}
+
+.entry--error {
+  background: #fdf9f9;
+}
+
+.entry--error .entry__id {
+  color: #b22020;
+}
+
+.entry {
+  width: 100%;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.entry:hover, .entry:focus, .entry:active {
+  background: #fafafa;
+  outline: 0;
+}
+
+.entry__row {
+  display: table-row;  
+  width: 100%;
+}
+
+.entry__row > * {
+  display: table-cell;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.entry__id {
+  vertical-align: middle;
+  padding: 0 20px;
+  color: darkgrey;
+  font-size: 1.05em;
+}
+
+.entry__text {
+  padding: 10px 20px 10px 0;
+  white-space: pre-wrap;
+  position: relative;
+  width: 100%;
+}
+
+.entry__timestamp {
+  position: absolute;
+  right: 20px;
+  bottom: 0;
+  transform: translateY(50%);
+  padding: 3px 4px;
+  font-size: 0.8em;
+  color: darkgrey;
+  background: white;
+  box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.32);
+  z-index: 1;
+}
+
+#default-log {
+  display: none;
+}
