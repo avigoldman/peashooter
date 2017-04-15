@@ -10,6 +10,7 @@ const io = require('socket.io')(server);
 const knex = require('./utils/knex');
 
 app.use(bodyParser.text());
+app.use(express.static('public'));
 
 /**
  * Lists all the logs
