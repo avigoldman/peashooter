@@ -36,6 +36,19 @@ $(function() {
   });
 
   /**
+   * Show error on "error"
+   */
+  socket.on('error', function(data)  {
+    var error = data.error;
+
+    addEntry({
+      id: 'Error',
+      text: error.replace('Error:', '').trim(),
+      error: true
+    }, true);
+  });
+
+  /**
    * Function to add in new entries
    */
   function addEntry(entry, isNew) {
